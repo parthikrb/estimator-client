@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-fibonacci-tile',
@@ -7,9 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FibonacciTileComponent implements OnInit {
 
+  toggle = true;
+
+  @Input() value: number;
   constructor() { }
 
   ngOnInit() {
+  }
+
+  cardSelected(value) {
+    console.log('Card clicked, ', value);
+    this.toggle = !this.toggle;
   }
 
 }

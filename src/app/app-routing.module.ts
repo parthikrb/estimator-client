@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { FibonacciTileComponent } from './shared/components/fibonacci-tile/fibonacci-tile.component';
+import { VotePageComponent } from './pages/vote-page/vote-page.component';
 
 
 const routes: Routes = [{
   path: '',
-  component: FibonacciTileComponent
+  component: VotePageComponent
 }];
 
 @NgModule({

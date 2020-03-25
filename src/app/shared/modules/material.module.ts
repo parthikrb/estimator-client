@@ -13,6 +13,7 @@ import {MatSliderModule} from '@angular/material/slider';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatRadioModule} from '@angular/material/radio';
 
 import {NgModule} from '@angular/core';
 
@@ -32,7 +33,8 @@ import {NgModule} from '@angular/core';
     MatTooltipModule,
     MatListModule,
     MatDialogModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatRadioModule
   ],
   exports: [
     MatButtonModule,
@@ -49,7 +51,8 @@ import {NgModule} from '@angular/core';
     MatTooltipModule,
     MatListModule,
     MatDialogModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatRadioModule
   ],
 })
 
