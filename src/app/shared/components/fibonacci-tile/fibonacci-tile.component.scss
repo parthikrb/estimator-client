@@ -1,0 +1,24 @@
+.fibonacci-card {
+    width: 120px;
+    height: 150px;
+     :hover {
+        color: rgb(74, 250, 206);
+    }
+}
+
+.fibonacci-card-selected {
+    width: 120px;
+    height: 150px;
+    background-color: rgb(74, 250, 206);
+}
+
+.mat-card-text {
+    font-size: 6rem;
+    font-weight: bolder;
+}
+
+.mat-card-content> :first-child,
+.mat-card> :first-child {
+    justify-content: center;
+    border-bottom-style: inset;
+}
