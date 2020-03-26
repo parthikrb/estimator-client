@@ -9,6 +9,9 @@ export class VotePageComponent implements OnInit {
 
   fibonacciValue: number[];
 
+  difficultyLevel = ['Easier than Easy', 'Easy', 'Normal', 'Medium', 'Standard', 'Average',
+  'Intermediate', 'Hard', 'Expert', 'Difficult'];
+
   constructor() { }
 
   ngOnInit() {

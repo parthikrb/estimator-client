@@ -1,7 +1,10 @@
 <mat-card [ngClass]="{'fibonacci-card' : toggle, 'fibonacci-card-selected': !toggle}" (click)="cardSelected(value)">
     <mat-card-header style="text-align: center;">
         <mat-card-title>
-            <span class="mat-card-text"> {{ value }}</span>
+            <span class="mat-card-text">{{ value }}</span>
         </mat-card-title>
     </mat-card-header>
+    <mat-card-content>
+        {{description}}
+    </mat-card-content>
 </mat-card>

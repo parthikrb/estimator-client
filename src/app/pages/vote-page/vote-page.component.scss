@@ -1,4 +1,5 @@
 .flex-container {
+    margin-top: -10px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -7,4 +8,22 @@
 .tile {
     margin: 10px;
     padding: 25px;
+}
+
+h4 {
+    text-align: center;
+    margin-bottom: -10px;
+}
+
+.story-number {
+    background-color: hsla(160, 57%, 46%, 0.75);
+    padding: 5px;
+    color: whitesmoke;
+    animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+    50% {
+        opacity: 0;
+    }
 }
