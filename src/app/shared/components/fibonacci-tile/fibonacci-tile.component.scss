@@ -1,8 +1,8 @@
 .fibonacci-card {
     width: 120px;
     height: 150px;
-     :hover {
-        color: rgb(74, 250, 206);
+    &:hover {
+        background-color: rgb(74, 250, 206);
     }
 }
 
@@ -21,4 +21,12 @@
 .mat-card> :first-child {
     justify-content: center;
     border-bottom-style: inset;
+}
+
+.mat-card-content> :last-child:not(.mat-card-footer),
+.mat-card> :last-child:not(.mat-card-footer) {
+    margin-bottom: 0;
+    margin-top: 5px;
+    text-align: center;
+    font-weight: lighter;
 }

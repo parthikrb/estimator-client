@@ -10,6 +10,9 @@ export class FibonacciTileComponent implements OnInit {
   toggle = true;
 
   @Input() value: number;
+
+  @Input() description: string;
+
   constructor() { }
 
   ngOnInit() {
