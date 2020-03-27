@@ -18,7 +18,8 @@
 .fibonacci-card-selected {
     width: 120px;
     height: 150px;
-    background-color: rgb(74, 250, 206);
+    // background-color: rgb(74, 250, 206);
+    background: linear-gradient(140deg, #00C9FF 0%, #92FE9D 100%);
 }
 
 .mat-card-text {
