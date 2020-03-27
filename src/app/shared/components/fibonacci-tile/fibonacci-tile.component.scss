@@ -1,15 +1,25 @@
+* {
+    transition: all 0.3s ease-out;
+}
+
 .fibonacci-card {
     width: 120px;
     height: 150px;
     &:hover {
         background-color: rgb(74, 250, 206);
+        transition: all 0.2s ease-out;
+        box-shadow: 0px 4px 8px rgba(38, 38, 38, 0.2);
+        top: -4px;
+        border: 1px solid #cccccc;
+        background-color: white;
     }
 }
 
 .fibonacci-card-selected {
     width: 120px;
     height: 150px;
-    background-color: rgb(74, 250, 206);
+    // background-color: rgb(74, 250, 206);
+    background: linear-gradient(140deg, #00C9FF 0%, #92FE9D 100%);
 }
 
 .mat-card-text {
