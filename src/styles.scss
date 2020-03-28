@@ -39,3 +39,12 @@ body {
 .icon {
     padding: 0 14px;
 }
+
+.primaryBackground {
+    background: linear-gradient(140deg, #00C9FF 0%, #92FE9D 100%);
+}
+
+@font-face {
+    font-family: chalkFont;
+    src: url(./assets/fonts/SqueakyChalkSound.ttf);
+}

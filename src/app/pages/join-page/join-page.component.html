@@ -1,0 +1,27 @@
+<div class="container">
+    <form [formGroup]="joinFormGroup" (ngSubmit)="join(joinFormGroup.value)" class="joinForm">
+        <p class="title">esteamate</p>
+        <mat-form-field class="form-element">
+            <mat-label>First Name</mat-label>
+            <input matInput placeholder="Enter firstname..." autocomplete="off" formControlName="name" autofocus>
+        </mat-form-field>
+        <mat-form-field class="form-element">
+            <mat-label>Role</mat-label>
+            <mat-select formControlName="role">
+                <mat-option *ngFor="let role of roles" [value]="role">
+                    {{role}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="form-element">
+            <mat-label>Access Code</mat-label>
+            <input matInput placeholder="Enter access code..." autocomplete="off" formControlName="code">
+        </mat-form-field>
+        <div class="form-element">
+            <button mat-raised-button color="primary" type="submit" class="joinButton" [disabled]="!joinFormGroup.valid">Join</button>
+        </div>
+        <div class="form-element">
+            <button mat-raised-button color="secondary" class="loginButton primaryBackground">Login</button>
+        </div>
+    </form>
+</div>

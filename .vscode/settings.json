@@ -3,6 +3,7 @@
         "Theming",
         "downlevel",
         "esnext",
+        "firstname",
         "flexbox",
         "mixins"
     ]
