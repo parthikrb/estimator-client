@@ -1,0 +1,42 @@
+.container {
+    background-image: url(../../../assets/images/blackboard.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.title {
+    font-size: 2.4rem;
+    // font-weight: bolder;
+    text-align: center;
+    color: whitesmoke;
+    // margin-bottom: -1px;
+    font-family: chalkFont;
+}
+
+.joinForm {
+    max-width: 25%;
+    min-width: 300px;
+    margin: auto;
+    position: relative;
+    // border: groove;
+    padding: 10px;
+    border-radius: 0.25rem;
+    // background-color: #FFF8AD;
+}
+
+.form-element {
+    width: 100%;
+}
+
+.joinButton {
+    float: right;
+    width: 40%;
+}
+
+.loginButton {
+    float: left;
+    width: 40%;
+}
