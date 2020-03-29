@@ -1,27 +1,54 @@
 <div class="container">
-    <form [formGroup]="joinFormGroup" (ngSubmit)="join(joinFormGroup.value)" class="joinForm">
-        <p class="title">esteamate</p>
-        <mat-form-field class="form-element">
-            <mat-label>First Name</mat-label>
-            <input matInput placeholder="Enter firstname..." autocomplete="off" formControlName="name" autofocus>
-        </mat-form-field>
-        <mat-form-field class="form-element">
-            <mat-label>Role</mat-label>
-            <mat-select formControlName="role">
-                <mat-option *ngFor="let role of roles" [value]="role">
-                    {{role}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-        <mat-form-field class="form-element">
-            <mat-label>Access Code</mat-label>
-            <input matInput placeholder="Enter access code..." autocomplete="off" formControlName="code">
-        </mat-form-field>
-        <div class="form-element">
-            <button mat-raised-button color="primary" type="submit" class="joinButton" [disabled]="!joinFormGroup.valid">Join</button>
-        </div>
-        <div class="form-element">
-            <button mat-raised-button color="secondary" class="loginButton primaryBackground">Login</button>
-        </div>
-    </form>
+    <div class="title">
+        <p>esteamate</p>
+    </div>
+    <div class="tabGroup">
+        <mat-tab-group class="tab">
+
+            <mat-tab label="Participant">
+                <form [formGroup]="joinFormGroup" (ngSubmit)="join(joinFormGroup.value)" class="joinForm">
+
+                    <mat-form-field class="form-element">
+                        <mat-label>First Name</mat-label>
+                        <input matInput placeholder="Enter firstname..." autocomplete="off" formControlName="name" autofocus>
+                    </mat-form-field>
+                    <mat-form-field class="form-element">
+                        <mat-label>Role</mat-label>
+                        <mat-select formControlName="role">
+                            <mat-option *ngFor="let role of roles" [value]="role">
+                                {{role}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="form-element">
+                        <mat-label>Access Code</mat-label>
+                        <input matInput placeholder="Enter access code..." autocomplete="off" formControlName="code">
+                    </mat-form-field>
+                    <div class="form-element">
+                        <button mat-raised-button color="primary" type="submit" class="joinButton" [disabled]="!joinFormGroup.valid">Join</button>
+                    </div>
+                </form>
+            </mat-tab>
+            <mat-tab label="Host">
+                <form [formGroup]="loginFormGroup" (ngSubmit)="login(loginFormGroup.value)" class="joinForm">
+
+                    <mat-form-field class="form-element">
+                        <mat-label>Username</mat-label>
+                        <input matInput placeholder="Enter username..." autocomplete="off" formControlName="username" autofocus>
+                    </mat-form-field>
+                    <mat-form-field class="form-element">
+                        <mat-label>Password</mat-label>
+                        <input matInput placeholder="Enter password..." autocomplete="off" formControlName="password">
+                    </mat-form-field>
+                    <div class="form-element">
+                        <mat-checkbox formControlName="isRemember">Keep me Logged in!</mat-checkbox>
+                    </div>
+                    <div class="form-element">
+                        <button mat-raised-button type="submit" color="primary" class="loginButton" [disabled]="!loginFormGroup.valid">Login</button>
+                    </div>
+
+                </form>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
 </div>

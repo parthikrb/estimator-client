@@ -7,6 +7,9 @@ import { JoinPageComponent } from './pages/join-page/join-page.component';
 const routes: Routes = [{
   path: '',
   component: JoinPageComponent
+}, {
+  path: 'vote',
+  component: VotePageComponent
 }];
 
 @NgModule({
