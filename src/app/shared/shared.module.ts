@@ -4,8 +4,9 @@ import { FibonacciTileComponent } from './components/fibonacci-tile/fibonacci-ti
 import { MaterialModule } from './modules/material.module';
 import { HeaderComponent } from './components/header/header.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SearchComponent } from './components/search/search.component';
 
-const components = [FibonacciTileComponent, HeaderComponent];
+const components = [FibonacciTileComponent, HeaderComponent, SearchComponent];
 
 @NgModule({
   declarations: [components],

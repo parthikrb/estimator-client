@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdminHomePageComponent } from './admin-home-page/admin-home-page.component';
-import { AddSquadPageComponent } from './squad/add-squad-page/add-squad-page.component';
 import { Routes, RouterModule } from '@angular/router';
-import { MaterialModule } from '../shared/modules/material.module';
 import { SquadModule } from './squad/squad.module';
 import { UserModule } from './user/user.module';
 import { StoryModule } from './story/story.module';
+import { SquadsPageComponent } from './squad/squads-page/squads-page.component';
+import { UsersPageComponent } from './user/users-page/users-page.component';
+import { StorysPageComponent } from './story/storys-page/storys-page.component';
 
 const dashboardRoutes: Routes = [{
   path: '',
@@ -19,8 +20,18 @@ const dashboardRoutes: Routes = [{
   children: [
     {
       path: 'squads',
-      component: AddSquadPageComponent,
+      component: SquadsPageComponent,
       // loadChildren: './squad/squad.module#SquadModule',
+      outlet: 'sidenav'
+    },
+    {
+      path: 'users',
+      component: UsersPageComponent,
+      outlet: 'sidenav'
+    },
+    {
+      path: 'stories',
+      component: StorysPageComponent,
       outlet: 'sidenav'
     }
   ]
@@ -30,7 +41,6 @@ const dashboardRoutes: Routes = [{
   declarations: [AdminHomePageComponent],
   imports: [
     CommonModule,
-    MaterialModule,
     RouterModule.forChild(dashboardRoutes),
     SquadModule,
     UserModule,
