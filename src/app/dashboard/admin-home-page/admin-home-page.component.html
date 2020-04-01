@@ -1,0 +1,31 @@
+<div class="container">
+    <mat-drawer-container class="sidenav mat-typography" autosize>
+        <mat-drawer #drawer mode="side" disableClose="true" opened="true">
+            <mat-nav-list>
+                <mat-list-item [routerLink]="[{ outlets: { sidenav: ['squads'] } }]">
+                    <mat-icon mat-list-icon>person</mat-icon>
+                    <h4 mat-line *ngIf="isExpanded">Team</h4>
+                </mat-list-item>
+                <mat-list-item>
+                    <mat-icon mat-list-icon>assignment</mat-icon>
+                    <h4 mat-line *ngIf="isExpanded">Management B</h4>
+                </mat-list-item>
+                <mat-list-item>
+                    <mat-icon mat-list-icon>domain</mat-icon>
+                    <h4 mat-line *ngIf="isExpanded">Management C</h4>
+                </mat-list-item>
+                <mat-list-item>
+                    <mat-icon mat-list-icon>folder_shared</mat-icon>
+                    <h4 mat-line *ngIf="isExpanded">Management X</h4>
+                </mat-list-item>
+            </mat-nav-list>
+            <button mat-mini-fab (click)="isExpanded = !isExpanded" color="warn" style="margin: 10px;" class="expandButton">
+              <mat-icon aria-label="Menu">menu</mat-icon>
+            </button>
+        </mat-drawer>
+
+        <div class="sidenav-content">
+            <router-outlet name="sidenav"></router-outlet>
+        </div>
+    </mat-drawer-container>
+</div>

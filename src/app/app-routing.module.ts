@@ -10,6 +10,9 @@ const routes: Routes = [{
 }, {
   path: 'vote',
   component: VotePageComponent
+}, {
+  path: 'admin',
+  loadChildren: './dashboard/dashboard.module#DashboardModule'
 }];
 
 @NgModule({

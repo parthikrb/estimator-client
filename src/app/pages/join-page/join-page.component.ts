@@ -48,6 +48,7 @@ export class JoinPageComponent implements OnInit {
 
 login(value) {
   console.log(value);
+  this.router.navigate(['/admin']);
 }
 
 }
