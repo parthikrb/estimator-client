@@ -1,6 +1,6 @@
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
-@import '~@angular/material/theming';
+@import "~@angular/material/theming";
 // Plus imports for other components in your app.
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
@@ -14,7 +14,7 @@ $estimator-client-accent: mat-palette($mat-pink, A200, A100, A400);
 // The warn palette is optional (defaults to red).
 $estimator-client-warn: mat-palette($mat-red);
 // Create the theme object (a Sass map containing all of the palettes).
-$estimator-client-theme: mat-light-theme($estimator-client-primary, $estimator-client-accent, $estimator-client-warn);
+$estimator-client-theme: mat-light-theme( $estimator-client-primary, $estimator-client-accent, $estimator-client-warn);
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
@@ -41,10 +41,24 @@ body {
 }
 
 .primaryBackground {
-    background: linear-gradient(140deg, #00C9FF 0%, #92FE9D 100%);
+    background: linear-gradient(140deg, #00c9ff 0%, #92fe9d 100%);
 }
 
 @font-face {
     font-family: chalkFont;
     src: url(./assets/fonts/SqueakyChalkSound.ttf);
+}
+
+.page-container {
+    height: 100%;
+    width: 100%;
+}
+
+.top {
+    margin: 10px 10px 5px 10px;
+}
+
+.add-button {
+    width: 20%;
+    float: right;
 }
