@@ -49,16 +49,20 @@ body {
     src: url(./assets/fonts/SqueakyChalkSound.ttf);
 }
 
+$page-left-margin: 30px;
 .page-container {
+    position: relative;
     height: 100%;
-    width: 100%;
+    width: calc(100% - $page-left-margin);
+    margin-left: $page-left-margin;
 }
 
 .top {
     margin: 10px 10px 5px 10px;
 }
 
-.add-button {
-    width: 20%;
-    float: right;
+.addButton {
+    margin-left: -20px;
+    position: absolute;
+    z-index: 10000;
 }
