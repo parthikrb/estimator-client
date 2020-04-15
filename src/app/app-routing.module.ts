@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { VotePageComponent } from './pages/vote-page/vote-page.component';
 import { JoinPageComponent } from './pages/join-page/join-page.component';
+import { AuthGuard } from './guards/auth.guard';
 
 
 const routes: Routes = [{
@@ -9,7 +10,8 @@ const routes: Routes = [{
   component: JoinPageComponent
 }, {
   path: 'vote',
-  component: VotePageComponent
+  component: VotePageComponent,
+  canActivate: [AuthGuard]
 }, {
   path: 'admin',
   loadChildren: './dashboard/dashboard.module#DashboardModule'

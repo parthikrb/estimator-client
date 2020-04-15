@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { first } from 'rxjs/operators';
+import * as bcrypt from 'bcryptjs';
 
 @Component({
   selector: 'app-join-page',
@@ -8,7 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./join-page.component.scss']
 })
 export class JoinPageComponent implements OnInit {
-
+  returnUrl: string;
   joinFormGroup: FormGroup;
 
   loginFormGroup: FormGroup;
@@ -17,12 +20,20 @@ export class JoinPageComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private router: Router
-    ) { }
+    private route: ActivatedRoute,
+    private router: Router,
+    private authenticationService: AuthenticationService
+  ) {
+    if (this.authenticationService.currentUserValue) {
+      this.router.navigate(['/admin']);
+    }
+  }
 
   ngOnInit() {
     this.joinForm();
     this.loginForm();
+
+    this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/admin';
   }
 
   joinForm() {
@@ -46,9 +57,18 @@ export class JoinPageComponent implements OnInit {
     this.router.navigate(['/vote']);
   }
 
-login(value) {
-  console.log(value);
-  this.router.navigate(['/admin']);
-}
+  async login(value) {
+    if (this.loginFormGroup.invalid) {
+      return;
+    }
+    // const password = await bcrypt.hash(value.password, 10);
+    this.authenticationService.login(value.username, value.password)
+      .pipe(first())
+      .subscribe(
+        data => {
+          this.router.navigate([this.returnUrl]);
+        }
+      );
+  }
 
 }
