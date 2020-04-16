@@ -142,6 +142,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "estimator-client"
+    }
+  },
+  "defaultProject": "estimator-client",
+  "cli": {
+    "analytics": "4d76c52a-910f-45fe-a691-9f22bb963ba8"
+  }
 }
