@@ -3,19 +3,28 @@ import { CommonModule } from '@angular/common';
 import { UsersPageComponent } from './users-page/users-page.component';
 import { AddUserPageComponent } from './add-user-page/add-user-page.component';
 import { EditUserPageComponent } from './edit-user-page/edit-user-page.component';
-import { MaterialModule } from '../../shared/modules/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared/shared.module';
+import { Routes, RouterModule } from '@angular/router';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { BottomSheetHelper } from 'src/app/helpers/bottomSheetHelper';
 
+const userRoutes: Routes = [{
+  path: '',
+  component: UsersPageComponent
+}];
 
 
 @NgModule({
+  entryComponents: [AddUserPageComponent],
   declarations: [UsersPageComponent, AddUserPageComponent, EditUserPageComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    RouterModule.forChild(userRoutes)
   ],
-  exports: [UsersPageComponent, AddUserPageComponent, EditUserPageComponent, SharedModule]
+  exports: [UsersPageComponent, AddUserPageComponent, EditUserPageComponent, SharedModule],
+
 })
 export class UserModule { }

@@ -2,13 +2,21 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { VotePageComponent } from './vote-page/vote-page.component';
 import { SharedModule } from '../shared/shared.module';
-import { JoinPageComponent } from './join-page/join-page.component';
+import { SquadModule } from './squad/squad.module';
+import { SprintModule } from './sprint/sprint.module';
+import { UserModule } from './user/user.module';
+import { DashboardModule } from './dashboard/dashboard.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [VotePageComponent, JoinPageComponent],
+  declarations: [VotePageComponent],
   imports: [
     CommonModule,
-    SharedModule
+    SquadModule,
+    SprintModule,
+    UserModule,
+    SharedModule,
+    DashboardModule
   ],
   exports: [SharedModule]
 })
