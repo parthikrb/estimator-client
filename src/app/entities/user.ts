@@ -2,5 +2,15 @@ export class UserLogin {
   id?: string;
   username: string;
   password: string;
-  authdata?: string;
+  value?: string;
+}
+
+
+export class User {
+  firstname: string;
+  lastname: string;
+  username: string;
+  password: string;
+  email: string;
+  isAdmin: string;
 }

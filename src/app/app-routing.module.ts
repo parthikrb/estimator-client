@@ -13,16 +13,16 @@ const routes: Routes = [{
   canActivate: [AuthGuard]
 }, {
   path: 'admin',
-  loadChildren: './pages/dashboard/dashboard.module#DashboardModule'
+  loadChildren: () => import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule)
 }, {
   path: 'squad',
-  loadChildren: './pages/squad/squad.module#SquadModule'
+  loadChildren: () => import('./pages/squad/squad.module').then(m => m.SquadModule)
 }, {
   path: 'sprint',
-  loadChildren: './pages/sprint/sprint.module#SprintModule'
+  loadChildren: () => import('./pages/sprint/sprint.module').then(m => m.SprintModule)
 }, {
   path: 'user',
-  loadChildren: './pages/user/user.module#UserModule'
+  loadChildren: () => import('./pages/user/user.module').then(m => m.UserModule)
 }];
 
 @NgModule({
