@@ -4,19 +4,26 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { UserLogin } from '../entities/user';
 import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 
 
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<UserLogin>;
-  public currentUser: Observable<UserLogin>;
-
+  private loggedIn: BehaviorSubject<boolean>;
+  public currentUser$: Observable<UserLogin>;
+  public isLoggedIn$: Observable<boolean>;
   private readonly api = environment.apiUri;
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private router: Router
+  ) {
     this.currentUserSubject = new BehaviorSubject<UserLogin>(JSON.parse(localStorage.getItem('currentUser')));
-    this.currentUser = this.currentUserSubject.asObservable();
+    this.currentUser$ = this.currentUserSubject.asObservable();
+    this.loggedIn = new BehaviorSubject<boolean>(false);
+    this.isLoggedIn$ = this.loggedIn.asObservable();
   }
 
   public get currentUserValue(): UserLogin {
@@ -31,13 +38,16 @@ export class AuthenticationService {
         user.authdata = window.btoa(username + ':' + password);
         localStorage.setItem('currentUser', JSON.stringify(user));
         this.currentUserSubject.next(user);
+        this.loggedIn.next(true);
         return user;
       }));
   }
 
   logout() {
     // remove user from local storage to log user out
+    this.loggedIn.next(false);
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
+    this.router.navigate(['/']);
   }
 }

@@ -1,19 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AddSquadPageComponent } from './add-squad-page/add-squad-page.component';
-import { Routes } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { SquadsPageComponent } from './squads-page/squads-page.component';
 import { EditSquadPageComponent } from './edit-squad-page/edit-squad-page.component';
 import { SharedModule } from '../../shared/shared.module';
 
 const squadRoutes: Routes = [{
   path: '',
-  redirectTo: '/squadsHome',
-  pathMatch: 'full'
-},
-{
-  path: 'squadsHome',
-  component: AddSquadPageComponent,
+  component: SquadsPageComponent,
 }];
 
 
@@ -21,7 +16,8 @@ const squadRoutes: Routes = [{
   declarations: [AddSquadPageComponent, SquadsPageComponent, EditSquadPageComponent],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    RouterModule.forChild(squadRoutes)
   ],
   exports: [AddSquadPageComponent, SquadsPageComponent, EditSquadPageComponent]
 })

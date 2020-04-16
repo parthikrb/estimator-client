@@ -1,0 +1,31 @@
+<mat-sidenav-container [ngClass]="(isLoggedIn$ | async) ? 'sidenav-l' : 'sidenav'" autosize>
+    <mat-sidenav #drawer mode="side" disableClose="true" opened *ngIf="isLoggedIn$ | async">
+        <mat-nav-list>
+            <mat-list-item [routerLink]="['admin']" routerLinkActive="is-active">
+                <mat-icon mat-list-icon>wifi</mat-icon>
+                <h4 mat-line *ngIf="isExpanded">Poll</h4>
+            </mat-list-item>
+            <mat-list-item [routerLink]="['sprint']" routerLinkActive="is-active">
+                <mat-icon mat-list-icon>library_books</mat-icon>
+                <h4 mat-line *ngIf="isExpanded">Sprint</h4>
+            </mat-list-item>
+            <mat-list-item [routerLink]="['user']" routerLinkActive="is-active">
+                <mat-icon mat-list-icon>person</mat-icon>
+                <h4 mat-line *ngIf="isExpanded">User</h4>
+            </mat-list-item>
+            <mat-list-item [routerLink]="['squad']" routerLinkActive="is-active">
+                <mat-icon mat-list-icon>group</mat-icon>
+                <h4 mat-line *ngIf="isExpanded">Squad</h4>
+            </mat-list-item>
+            <mat-list-item (click)="isExpanded = !isExpanded" class="bottom">
+                <mat-icon mat-list-icon matTooltip="Expand/Collapse" matTooltipPosition="right">compare_arrows</mat-icon>
+                <h4 mat-line *ngIf="isExpanded">Collapse</h4>
+            </mat-list-item>
+        </mat-nav-list>
+    </mat-sidenav>
+
+    <div class="outer">
+        <router-outlet></router-outlet>
+    </div>
+
+</mat-sidenav-container>

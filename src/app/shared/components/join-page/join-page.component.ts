@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { first } from 'rxjs/operators';
-import * as bcrypt from 'bcryptjs';
+import { UserLogin } from './../../../entities/user';
 
 @Component({
   selector: 'app-join-page',
@@ -11,28 +11,22 @@ import * as bcrypt from 'bcryptjs';
   styleUrls: ['./join-page.component.scss']
 })
 export class JoinPageComponent implements OnInit {
+
   returnUrl: string;
   joinFormGroup: FormGroup;
-
   loginFormGroup: FormGroup;
-
   roles: string[] = ['Developer', 'Quality Analyst', 'Business Analyst'];
 
   constructor(
     private formBuilder: FormBuilder,
-    private route: ActivatedRoute,
     private router: Router,
-    private authenticationService: AuthenticationService
-  ) {
-    if (this.authenticationService.currentUserValue) {
-      this.router.navigate(['/admin']);
-    }
-  }
+    private route: ActivatedRoute,
+    private readonly authenticationService: AuthenticationService,
+    ) { }
 
   ngOnInit() {
     this.joinForm();
     this.loginForm();
-
     this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/admin';
   }
 
@@ -57,7 +51,7 @@ export class JoinPageComponent implements OnInit {
     this.router.navigate(['/vote']);
   }
 
-  async login(value) {
+  login(value: UserLogin) {
     if (this.loginFormGroup.invalid) {
       return;
     }

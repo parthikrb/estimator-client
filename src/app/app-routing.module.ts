@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { VotePageComponent } from './pages/vote-page/vote-page.component';
-import { JoinPageComponent } from './pages/join-page/join-page.component';
 import { AuthGuard } from './guards/auth.guard';
-
+import { JoinPageComponent } from './shared/components/join-page/join-page.component';
 
 const routes: Routes = [{
   path: '',
@@ -14,7 +13,16 @@ const routes: Routes = [{
   canActivate: [AuthGuard]
 }, {
   path: 'admin',
-  loadChildren: './dashboard/dashboard.module#DashboardModule'
+  loadChildren: './pages/dashboard/dashboard.module#DashboardModule'
+}, {
+  path: 'squad',
+  loadChildren: './pages/squad/squad.module#SquadModule'
+}, {
+  path: 'sprint',
+  loadChildren: './pages/sprint/sprint.module#SprintModule'
+}, {
+  path: 'user',
+  loadChildren: './pages/user/user.module#UserModule'
 }];
 
 @NgModule({

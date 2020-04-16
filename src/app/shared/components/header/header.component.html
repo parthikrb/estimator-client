@@ -1,8 +1,9 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" *ngIf="isLoggedIn$ | async" class="toolbar">
     <mat-toolbar-row>
         <span>estimator</span>
         <span class="spacer"></span>
         <mat-icon class="icon" aria-hidden="false" aria-label="account icon">account_circle</mat-icon>
-        <mat-icon class="icon" aria-hidden="false" aria-label="logout icon">power_settings_new</mat-icon>
+        <mat-icon class="icon" aria-hidden="false" aria-label="logout icon" (click)="logout()" class="logout">power_settings_new</mat-icon>
+        <!-- <button mat-mini-fab (click)="logout()"><mat-icon>power_settings_new</mat-icon></!-->
     </mat-toolbar-row>
 </mat-toolbar>
