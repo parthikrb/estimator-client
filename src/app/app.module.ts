@@ -9,8 +9,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './guards/auth.interceptor';
 import { ErrorInterceptor } from './guards/error.interceptor';
 import { MAT_BOTTOM_SHEET_DEFAULT_OPTIONS, MatBottomSheet } from '@angular/material/bottom-sheet';
-import { BottomSheetHelper } from './helpers/bottomSheetHelper';
-import { AddUserPageComponent } from './pages/user/add-user-page/add-user-page.component';
 import { AppStoreModule } from './store/app-store.module';
 
 @NgModule({

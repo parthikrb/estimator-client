@@ -13,6 +13,7 @@ const squadRoutes: Routes = [{
 
 
 @NgModule({
+  entryComponents: [AddSquadPageComponent],
   declarations: [AddSquadPageComponent, SquadsPageComponent, EditSquadPageComponent],
   imports: [
     CommonModule,

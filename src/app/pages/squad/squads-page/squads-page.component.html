@@ -1,4 +1,22 @@
 <div class="page-container">
     squad
-    <button mat-mini-fab color="primary" class="addButton"><mat-icon>group_add</mat-icon></button>
+
+    <div *ngIf="loading$ | async">
+        <mat-spinner></mat-spinner>
+    </div>
+    <div class="card-container">
+        <mat-card class="squad-card" *ngFor="let squad of squads$ | async">
+            <mat-card-header>
+                <mat-card-title>{{ squad.squadname }}</mat-card-title>
+                <mat-card-subtitle>
+                    <a role="button" [copy-clipboard]="squad.accessCode" (copied)="notify($event)">
+                        <mat-icon>content_copy</mat-icon> {{ squad.accessCode }}
+                    </a>
+                </mat-card-subtitle>
+            </mat-card-header>
+        </mat-card>
+    </div>
+
+
+    <button mat-mini-fab color="primary" class="addButton" (click)="openAddSquad()"><mat-icon>group_add</mat-icon></button>
 </div>

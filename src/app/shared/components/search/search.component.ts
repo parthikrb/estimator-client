@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
@@ -12,6 +12,8 @@ export class SearchComponent implements OnInit {
 
   @Input() placeholder: string;
 
+  @Output() textEntered = new EventEmitter();
+
   constructor(
     private formbuilder: FormBuilder
   ) { }
@@ -24,6 +26,10 @@ export class SearchComponent implements OnInit {
     this.searchForm = this.formbuilder.group({
       searchField: [null]
     });
+  }
+
+  valueEntered($event) {
+    this.textEntered.emit($event);
   }
 
 }
