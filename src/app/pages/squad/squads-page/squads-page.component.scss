@@ -1,0 +1,11 @@
+.squad-card {
+    max-width: 20%;
+    border-top: red 3px solid;
+}
+
+.card-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}

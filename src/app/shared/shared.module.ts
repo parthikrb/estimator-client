@@ -8,12 +8,14 @@ import { SearchComponent } from './components/search/search.component';
 import { JoinPageComponent } from './components/join-page/join-page.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { RouterModule } from '@angular/router';
+import { CopyClipboardDirective } from './directives/copy-clipboard.directive';
+
 
 
 const components = [FibonacciTileComponent, HeaderComponent, SearchComponent, JoinPageComponent, SidenavComponent];
 
 @NgModule({
-  declarations: [components],
+  declarations: [components, CopyClipboardDirective],
   imports: [
     CommonModule,
     FormsModule,
@@ -21,6 +23,6 @@ const components = [FibonacciTileComponent, HeaderComponent, SearchComponent, Jo
     MaterialModule,
     RouterModule
   ],
-  exports: [ReactiveFormsModule, FormsModule, MaterialModule, components]
+  exports: [ReactiveFormsModule, FormsModule, MaterialModule, components, CopyClipboardDirective]
 })
 export class SharedModule { }

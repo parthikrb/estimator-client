@@ -8,6 +8,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { Routes, RouterModule } from '@angular/router';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { BottomSheetHelper } from 'src/app/helpers/bottomSheetHelper';
+import { NgScrollbarModule } from 'ngx-scrollbar';
 
 const userRoutes: Routes = [{
   path: '',
@@ -22,7 +23,8 @@ const userRoutes: Routes = [{
     CommonModule,
     ReactiveFormsModule,
     SharedModule,
-    RouterModule.forChild(userRoutes)
+    RouterModule.forChild(userRoutes),
+    NgScrollbarModule
   ],
   exports: [UsersPageComponent, AddUserPageComponent, EditUserPageComponent, SharedModule],
 

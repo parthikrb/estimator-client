@@ -1,4 +1,45 @@
 <div class="page-container">
-    user
+
+    <app-search placeholder="Ex. Parthi" (textEntered)="applyFilter($event)"></app-search>
+    <div class="table">
+        <div class="spinner-container" *ngIf="loading$ | async">
+            <mat-spinner></mat-spinner>
+        </div>
+        <div class="mat-elevation-z8 users-table">
+            <ng-scrollbar #scrollable track="all" pointerEventsMethod="scrollbar">
+                <mat-table [dataSource]="dataSource" matSort matSortActive="firstname" matSortDirection="asc" matSortDisableClear>
+                    <ng-container matColumnDef="firstname">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Firstname
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let user"> {{user.firstname}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="lastname">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Lastname
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let user"> {{user.lastname}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="username">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Username
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let user"> {{user.username}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="email">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Email
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let user"> {{user.email}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="isAdmin">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Is Admin?
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let user"> {{user.isAdmin}} </mat-cell>
+                    </ng-container>
+                    <mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                </mat-table>
+            </ng-scrollbar>
+        </div>
+        <mat-paginator #paginator [showFirstLastButtons]="true" [pageSize]="10" [pageSizeOptions]="[10, 25, 50]"></mat-paginator>
+    </div>
+
     <button mat-mini-fab color="primary" class="addButton" (click)="openAddUser()"><mat-icon>person_add</mat-icon></button>
 </div>

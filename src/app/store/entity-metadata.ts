@@ -1,8 +1,13 @@
 import { EntityMetadataMap, DefaultDataServiceConfig } from 'ngrx-data';
 
+
 const entityMetadata: EntityMetadataMap = {
-  User: {},
-  Squad: {},
+  User: {
+    selectId: User => User._id
+  },
+  Squad: {
+    selectId: Squad => Squad._id
+  },
   Story: {},
   Sprint: {}
 };

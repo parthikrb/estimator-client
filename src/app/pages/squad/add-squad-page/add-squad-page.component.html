@@ -1,1 +1,32 @@
-<p>add-squad-page works!fdgkjlsdfhgkljdghlskfslkghlskjghksljgshdfskjl</p>
+<mat-toolbar>
+    Add Squad
+    <span class="spacer"></span>
+    <mat-checkbox [(ngModel)]="addCheckBox" class="add-check-box" color="primary">Add another</mat-checkbox>
+    <button mat-stroked-button color="primary" (click)="addSquad(addSquadForm.value)" [disabled]="!addSquadForm.valid">
+    <mat-icon aria-hidden="false" aria-label="Save">done</mat-icon>
+  </button>
+</mat-toolbar>
+<form [formGroup]="addSquadForm" class="add-squad-form" autocomplete="off">
+    <table class="add-squad-fields-table">
+        <tr class="row">
+            <td class="table-data">
+                <mat-form-field class="form-element">
+                    <input type="text" matInput placeholder="Squadname" formControlName="squadname" autofocus>
+                </mat-form-field>
+            </td>
+            <td class="table-data">
+                <mat-form-field class="form-element">
+                    <input type="text" readonly matInput formControlName="accessCode">
+                </mat-form-field>
+            </td>
+        </tr>
+        <tr class="row">
+            <td class="table-data">
+                <mat-form-field class="form-element">
+                    <input type="text" matInput placeholder="Product Owner(s) & Scrum Master" formControlName="posm">
+                </mat-form-field>
+            </td>
+        </tr>
+    </table>
+
+</form>
