@@ -9,7 +9,7 @@ import { AuthenticationService } from '../../../services/authentication.service'
 })
 export class SidenavComponent implements OnInit {
 
-  // @Input() showMenu: boolean;
+  currentUser;
   isLoggedIn$: Observable<boolean>;
   isExpanded = false;
   constructor(
@@ -18,7 +18,7 @@ export class SidenavComponent implements OnInit {
 
   ngOnInit() {
     this.isLoggedIn$ = this.authenticationService.isLoggedIn$;
-
+    this.currentUser = this.authenticationService.currentUserValue;
   }
 
 }

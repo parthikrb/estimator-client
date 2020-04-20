@@ -9,11 +9,13 @@ const entityMetadata: EntityMetadataMap = {
     selectId: Squad => Squad._id
   },
   Story: {},
-  Sprint: {}
+  Sprint: {
+    selectId: Sprint => Sprint._id
+  }
 };
 
 // because the plural of "hero" is not "heros"
-const pluralNames = { Story: 'Stories', User: 'Users', Sprint: 'Sprints' , Squad: 'Squads'};
+const pluralNames = { Story: 'Stories', User: 'Users', Sprint: 'Sprints', Squad: 'Squads' };
 
 export const entityConfig = {
   entityMetadata,

@@ -30,14 +30,14 @@ export class SquadsPageComponent implements OnInit {
     private userService: UserService
   ) {
     this.users$ = this.userService.entities$;
-    this.userService.getAll();
-    console.log('USERS, ', this.users$);
     this.squads$ = this.squadService.entities$;
     this.loading$ = this.squadService.loading$;
-    this.squadService.getAll();
+    this.userService.getAll();
+
   }
 
   ngOnInit() {
+    this.squadService.getAll();
   }
 
   openAddSquad() {

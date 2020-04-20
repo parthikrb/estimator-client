@@ -10,6 +10,7 @@
         "formbuilder",
         "mixins",
         "sidenav",
+        "sprintname",
         "storys",
         "wifi"
     ]
