@@ -8,7 +8,7 @@ import { BottomSheetHelper } from '../../../helpers/bottomSheetHelper';
 import { AddSprintPageComponent } from '../add-sprint-page/add-sprint-page.component';
 
 @Component({
-  selector: 'app-storys-page',
+  selector: 'app-sprints-page',
   templateUrl: './sprints-page.component.html',
   styleUrls: ['./sprints-page.component.scss']
 })

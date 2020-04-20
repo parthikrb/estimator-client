@@ -6,7 +6,7 @@ import { SprintsPageComponent } from './sprints-page/sprints-page.component';
 import { SharedModule } from '../../shared/shared.module';
 import { Routes, RouterModule } from '@angular/router';
 
-const storyRoutes: Routes = [{
+const sprintRoutes: Routes = [{
   path: '',
   component: SprintsPageComponent
 }];
@@ -17,7 +17,7 @@ const storyRoutes: Routes = [{
   imports: [
     CommonModule,
     SharedModule,
-    RouterModule.forChild(storyRoutes)
+    RouterModule.forChild(sprintRoutes)
   ],
   exports: [EditStoryPageComponent, AddSprintPageComponent, SprintsPageComponent]
 })
