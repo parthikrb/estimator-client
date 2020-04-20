@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 export class HeaderComponent implements OnInit {
 
   isLoggedIn$: Observable<boolean>;
+  currentUser
 
   constructor(
     private readonly authenticationService: AuthenticationService,
@@ -17,6 +18,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.isLoggedIn$ = this.authenticationService.isLoggedIn$;
+    this.currentUser = this.authenticationService.currentUserValue;
   }
 
   logout() {

@@ -1,4 +1,43 @@
 <div class="page-container">
-    sprint
-    <button mat-mini-fab color="primary" class="addButton"><mat-icon>library_add</mat-icon></button>
+    <div *ngIf="loading$ | async">
+        <mat-spinner></mat-spinner>
+    </div>
+    <div *ngIf="!(loading$ | async)">
+        <div class="card-container">
+            <mat-card class="sprint-card" *ngFor="let sprint of sprints$ | async">
+                <mat-card-title>{{ sprint.sprintname }}</mat-card-title>
+                <mat-card-subtitle>
+                    <div class="capacity">
+                        <span class="dev">
+                          <mat-card class="small-tile">
+                                  <mat-card-title class="tile-title">{{ sprint.devCapacity}}</mat-card-title>
+                                  <mat-card-subtitle class="tile-subtitle">DEV</mat-card-subtitle>
+                          </mat-card>
+                    </span>
+                        <span class="qa">
+                          <mat-card class="small-tile">
+                            <mat-card-title class="tile-title">{{ sprint.qaCapacity}}</mat-card-title>
+                            <mat-card-subtitle class="tile-subtitle">QA</mat-card-subtitle>
+                    </mat-card>
+
+                    </span>
+                        <span class="po">
+                          <mat-card class="small-tile">
+                            <mat-card-title class="tile-title"> {{ sprint.poCapacity}}</mat-card-title>
+                            <mat-card-subtitle class="tile-subtitle">PO</mat-card-subtitle>
+                    </mat-card>
+                    </span>
+                        <span class="ba">
+                          <mat-card class="small-tile">
+                            <mat-card-title class="tile-title">{{ sprint.baCapacity}}</mat-card-title>
+                            <mat-card-subtitle class="tile-subtitle">DEV</mat-card-subtitle>
+                    </mat-card>
+                    </span>
+                    </div>
+                </mat-card-subtitle>
+            </mat-card>
+        </div>
+    </div>
+
+    <button mat-mini-fab color="primary" class="addButton" (click)="openAddSprint()"><mat-icon>library_add</mat-icon></button>
 </div>

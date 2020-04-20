@@ -1,0 +1,55 @@
+<mat-toolbar>
+    Add Sprint
+    <span class="spacer"></span>
+    <mat-checkbox [(ngModel)]="addCheckBox" class="add-check-box" color="primary">Add another</mat-checkbox>
+    <button mat-stroked-button color="primary" (click)="addSprint(addSprintForm.value)" [disabled]="!addSprintForm.valid">
+    <mat-icon aria-hidden="false" aria-label="Save">done</mat-icon>
+  </button>
+</mat-toolbar>
+<form [formGroup]="addSprintForm" class="add-sprint-form" autocomplete="off">
+    <table class="add-sprint-fields-table">
+        <tr class="row">
+            <td class="table-data">
+                <mat-form-field class="form-element">
+                    <input matInput placeholder="Squad" [matAutocomplete]="squad" formControlName="squad" autofocus>
+
+                    <mat-autocomplete #squad="matAutocomplete" [displayWith]="displayFn">
+                        <mat-option *ngFor="let squad of (filteredSquads | async)" [value]="squad">
+                            {{ squad.squadname}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+            </td>
+            <td class="table-data">
+                <mat-form-field class="form-element">
+                    <input type="text" matInput placeholder="Sprintname" formControlName="sprintname">
+                </mat-form-field>
+            </td>
+        </tr>
+        <tr class="row">
+            <td class="table-data">
+                <mat-form-field class="form-element">
+                    <input type="number" matInput placeholder="Development Capacity" formControlName="devCapacity">
+                </mat-form-field>
+            </td>
+            <td class="table-data">
+                <mat-form-field class="form-element">
+                    <input type="number" matInput placeholder="QA Capacity" formControlName="qaCapacity">
+                </mat-form-field>
+            </td>
+        </tr>
+        <tr class="row">
+            <td class="table-data">
+                <mat-form-field class="form-element">
+                    <input type="number" matInput placeholder="PO Capacity" formControlName="poCapacity">
+                </mat-form-field>
+            </td>
+            <td class="table-data">
+                <mat-form-field class="form-element">
+                    <input type="number" matInput placeholder="BA Capacity" formControlName="baCapacity">
+                </mat-form-field>
+            </td>
+        </tr>
+    </table>
+
+</form>

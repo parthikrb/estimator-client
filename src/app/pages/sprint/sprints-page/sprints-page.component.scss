@@ -1,0 +1,56 @@
+.card-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex-flow: row wrap;
+    .sprint-card {
+        margin: 10px;
+        // display: flex;
+        min-width: 160px;
+        border-top: rgb(0, 255, 98) 3px solid;
+        text-align: center;
+    }
+}
+
+.small-tile {
+    max-width: 20px;
+    max-height: 15px;
+    // position: absolute;
+}
+
+.tile-title {
+    font-size: 16px;
+    margin-top: -10px !important;
+}
+
+.tile-subtitle {
+    font-size: 10px;
+}
+
+.capacity {
+    display: flex;
+}
+
+.dev {
+    border-left: 3px solid green;
+    border-radius: 5px;
+    margin: 3px;
+}
+
+.qa {
+    border-left: 3px solid orangered;
+    border-radius: 5px;
+    margin: 3px;
+}
+
+.po {
+    border-left: 3px solid cyan;
+    border-radius: 5px;
+    margin: 3px;
+}
+
+.ba {
+    border-left: 3px solid blueviolet;
+    border-radius: 5px;
+    margin: 3px;
+}
