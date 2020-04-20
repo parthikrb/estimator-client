@@ -1,20 +1,20 @@
 <div class="page-container">
-    squad
-
     <div *ngIf="loading$ | async">
         <mat-spinner></mat-spinner>
     </div>
-    <div class="card-container">
-        <mat-card class="squad-card" *ngFor="let squad of squads$ | async">
-            <mat-card-header>
+    <div *ngIf="!(loading$ | async)">
+        <div class="card-container">
+            <mat-card class="squad-card" *ngFor="let squad of squads$ | async">
                 <mat-card-title>{{ squad.squadname }}</mat-card-title>
                 <mat-card-subtitle>
-                    <a role="button" [copy-clipboard]="squad.accessCode" (copied)="notify($event)">
-                        <mat-icon>content_copy</mat-icon> {{ squad.accessCode }}
+                    <a role="button" class="accessCode" [copy-clipboard]="squad.accessCode" (copied)="notify($event)">
+                        <div class="copy-icon">
+                            <mat-icon inline="true">content_copy</mat-icon>
+                        </div><span> {{ squad.accessCode }} </span>
                     </a>
                 </mat-card-subtitle>
-            </mat-card-header>
-        </mat-card>
+            </mat-card>
+        </div>
     </div>
 
 

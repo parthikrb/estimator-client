@@ -1,0 +1,17 @@
+<mat-form-field class="chip-list">
+    <div [formGroup]="form">
+        <mat-chip-list #chipList aria-label="User Selection" [formControlName]="'posm'">
+            <mat-chip *ngFor="let user of Users; let indx=index" [selectable]="selectable" [removable]="removable" color="primary" (removed)="remove(user, indx)">
+                {{ user.firstname }} {{ user.lastname}}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input placeholder="Product Owner(s) & Scrum Master" #userInput [formControl]="userCtrl" [matAutocomplete]="auto" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="seperatorKeyCodes" [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)">
+        </mat-chip-list>
+
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+            <mat-option *ngFor="let user of ( filteredUsers | async)" [value]="user">
+                {{user.firstname}} {{user.lastname}}
+            </mat-option>
+        </mat-autocomplete>
+    </div>
+</mat-form-field>
