@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
+import { Component, OnInit, Inject } from '@angular/core';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
 import { SquadService } from 'src/app/services/squad.service';
 import { Squad } from 'src/app/entities/squad';
 import { Observable } from 'rxjs';
@@ -14,12 +14,16 @@ export class AddSquadPageComponent implements OnInit {
   addSquadForm: FormGroup;
   addCheckBox = false;
   squads$: Observable<Squad[]>
+  _data: any;
 
   constructor(
+    @Inject(MAT_BOTTOM_SHEET_DATA) public data: any,
     private bottomSheetRef: MatBottomSheetRef<AddSquadPageComponent>,
     private formBuilder: FormBuilder,
     private squadService: SquadService
   ) {
+    this._data = data;
+    console.log('Add data', this._data)
     this.squads$ = this.squadService.entities$;
   }
 
@@ -33,6 +37,10 @@ export class AddSquadPageComponent implements OnInit {
       accessCode: [this.randomString(8, 'A#')],
       posm: [null, Validators.required]
     });
+  }
+
+  get posm() {
+    return this.addSquadForm.get('posm') as FormControl;
   }
 
   addSquad(value: Squad) {

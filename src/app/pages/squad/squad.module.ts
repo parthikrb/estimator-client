@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { SquadsPageComponent } from './squads-page/squads-page.component';
 import { EditSquadPageComponent } from './edit-squad-page/edit-squad-page.component';
 import { SharedModule } from '../../shared/shared.module';
+import { MatPoSmChipsComponent } from './mat-po-sm-chips/mat-po-sm-chips.component';
 
 const squadRoutes: Routes = [{
   path: '',
@@ -14,7 +15,7 @@ const squadRoutes: Routes = [{
 
 @NgModule({
   entryComponents: [AddSquadPageComponent],
-  declarations: [AddSquadPageComponent, SquadsPageComponent, EditSquadPageComponent],
+  declarations: [AddSquadPageComponent, SquadsPageComponent, EditSquadPageComponent, MatPoSmChipsComponent],
   imports: [
     CommonModule,
     SharedModule,
