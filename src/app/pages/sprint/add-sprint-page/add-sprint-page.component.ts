@@ -1,11 +1,11 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Squad } from 'src/app/entities/squad';
 import { MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { Sprint } from '../../../entities/sprint';
 import { SprintService } from '../../../services/sprint.service';
-import { startWith, map, filter } from 'rxjs/operators';
+import { startWith, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-add-sprint-page',

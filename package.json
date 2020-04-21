@@ -31,6 +31,7 @@
     "bcryptjs": "^2.4.3",
     "ngrx-data": "^6.1.0-beta.3",
     "ngx-scrollbar": "^7.2.1-beta.0",
+    "ngx-socket-io": "^3.0.1",
     "rxjs": "~6.5.5",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
