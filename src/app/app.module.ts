@@ -8,9 +8,12 @@ import { PagesModule } from './pages/pages.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './guards/auth.interceptor';
 import { ErrorInterceptor } from './guards/error.interceptor';
-import { MAT_BOTTOM_SHEET_DEFAULT_OPTIONS, MatBottomSheet } from '@angular/material/bottom-sheet';
+import { MAT_BOTTOM_SHEET_DEFAULT_OPTIONS } from '@angular/material/bottom-sheet';
 import { AppStoreModule } from './store/app-store.module';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { environment } from '../environments/environment';
 
+const config: SocketIoConfig = { url: environment.apiUri, options: {} };
 @NgModule({
   declarations: [
     AppComponent
@@ -20,6 +23,7 @@ import { AppStoreModule } from './store/app-store.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    SocketIoModule.forRoot(config),
     PagesModule,
     AppStoreModule
   ],

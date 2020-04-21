@@ -1,1 +1,26 @@
-<div>Hello</div>
+<div class="page-container">
+    <fieldset class="poll-fieldset">
+        <legend>Poll</legend>
+        <div class="post-story">
+            <form [formGroup]="postStoryForm">
+                <mat-form-field class="form-element">
+                    <mat-label>Sprint</mat-label>
+                    <input matInput placeholder="Ex. Sprint1" [matAutocomplete]="sprint" formControlName="sprint" autofocus>
+
+                    <mat-autocomplete #sprint="matAutocomplete" [displayWith]="displayFn">
+                        <mat-option *ngFor="let sprint of (filteredSprints | async)" [value]="sprint">
+                            {{ sprint?.sprintname}} - {{sprint?.squad['squadname']}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+                <mat-form-field class="form-element">
+                    <mat-label>Story#</mat-label>
+                    <input matInput name="text" id="post" placeholder="Ex. HFT-1234" formControlName="storyname" autocomplete="off">
+                </mat-form-field>
+                <button mat-raised-button color="primary" (click)="post(postStoryForm.value)" [disabled]="!postStoryForm.valid"> <mat-icon class="mat-18">cast</mat-icon> POLL
+                </button>
+            </form>
+
+        </div>
+    </fieldset>
+</div>
