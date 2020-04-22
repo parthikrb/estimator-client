@@ -1,5 +1,11 @@
-<h4>You are voting for Story#, <span class="story-number">HFT-1266</span></h4>
+<div *ngIf="storyNumber$ | async">
+    <h4>You are voting for Story#, <span class="story-number">{{ storyNumber$ | async}}</span></h4>
 
-<div class="flex-container">
-    <app-fibonacci-tile class="tile" *ngFor="let fib of fibonacciValue; let i = index" [value]="fib" [description]="difficultyLevel[i]"></app-fibonacci-tile>
+    <div class="flex-container">
+        <app-fibonacci-tile class="tile" *ngFor="let fib of fibonacciValue; let i = index" [value]="fib" [description]="difficultyLevel[i]"></app-fibonacci-tile>
+    </div>
+</div>
+
+<div *ngIf="!(storyNumber$ | async)" class="info">
+    <h1>Please wait for the Host</h1>
 </div>

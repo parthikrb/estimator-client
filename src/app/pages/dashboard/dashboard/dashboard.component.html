@@ -8,7 +8,7 @@
                     <input matInput placeholder="Ex. Sprint1" [matAutocomplete]="sprint" formControlName="sprint" autofocus>
 
                     <mat-autocomplete #sprint="matAutocomplete" [displayWith]="displayFn">
-                        <mat-option *ngFor="let sprint of (filteredSprints | async)" [value]="sprint">
+                        <mat-option *ngFor="let sprint of (filteredSprints | async)" [value]="sprint" (onSelectionChange)="sprintChange(sprint)">
                             {{ sprint?.sprintname}} - {{sprint?.squad['squadname']}}
                         </mat-option>
                     </mat-autocomplete>
@@ -21,6 +21,12 @@
                 </button>
             </form>
 
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>Users</legend>
+        <div class="flex-container">
+            <app-fibonacci-tile class="tile" *ngFor="let user of (roomUsers$ | async)" [value]="user.username" [description]="user.role"></app-fibonacci-tile>
         </div>
     </fieldset>
 </div>
