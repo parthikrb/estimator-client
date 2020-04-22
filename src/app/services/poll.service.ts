@@ -14,14 +14,20 @@ export class PollService {
   ) { }
 
   sendMessage(text: string, name: string, roomId: string): void {
-    this.socket.emit('message', {message: text, username: name, room: roomId});
+    this.socket.emit('message', { message: text, username: name, room: roomId });
   }
 
-  public getMessage(): Observable<Message> {
-    return this.socket.fromEvent<Message>('getMessage');
+  public getMessage(): Observable<any> {
+    return this.socket.fromEvent<any>('message');
   }
 
   public joinRoom(roomId: string, name: string, role: string): void {
-    this.socket.emit('joinRoom', {room: roomId, username: name, roles: role});
+    this.socket.emit('joinRoom', { room: roomId, username: name, roles: role });
   }
+
+  public getRoomUsers(): Observable<any> {
+    console.log('testing');
+    return this.socket.fromEvent<any>('roomUsers');
+  }
+
 }

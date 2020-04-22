@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { VotePageComponent } from './pages/vote-page/vote-page.component';
 import { AuthGuard } from './guards/auth.guard';
 import { JoinPageComponent } from './shared/components/join-page/join-page.component';
+import { JoinGuard } from './guards/join.guard';
 
 const routes: Routes = [{
   path: '',
@@ -10,10 +11,11 @@ const routes: Routes = [{
 }, {
   path: 'vote',
   component: VotePageComponent,
-  canActivate: [AuthGuard]
+  canActivate: [JoinGuard]
 }, {
   path: 'admin',
-  loadChildren: () => import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule)
+  loadChildren: () => import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule),
+  canActivate: [AuthGuard]
 }, {
   path: 'squad',
   loadChildren: () => import('./pages/squad/squad.module').then(m => m.SquadModule)

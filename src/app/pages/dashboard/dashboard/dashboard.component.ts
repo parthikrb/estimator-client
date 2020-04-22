@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { SprintService } from '../../../services/sprint.service';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { Sprint } from 'src/app/entities/sprint';
 import { startWith, map } from 'rxjs/operators';
 import { PollService } from '../../../services/poll.service';
@@ -18,7 +18,12 @@ export class DashboardComponent implements OnInit {
   loading$: Observable<boolean>;
   filteredSprints: Observable<Sprint[]>;
 
+  selectedSprint: string;
   allSprints: any[] = [];
+
+  roomUsers: any[] = [];
+  private roomUsersSubject = new BehaviorSubject<any>([]);
+  roomUsers$ = this.roomUsersSubject.asObservable();
 
   constructor(
     private formBuilder: FormBuilder,
@@ -36,6 +41,15 @@ export class DashboardComponent implements OnInit {
     this.createPostStoryForm();
 
     this.filteredSprints = this.getFilteredValue(this.sprint) as Observable<Sprint[]>;
+
+    /**
+     * To get the users in all rooms
+     */
+    this.pollService.getRoomUsers()
+      .subscribe(user => {
+        this.roomUsers = user;
+        if (this.selectedSprint) this.roomUsersSubject.next(this.roomUsers[this.selectedSprint]);
+      });
   }
 
   createPostStoryForm() {
@@ -75,5 +89,10 @@ export class DashboardComponent implements OnInit {
     return sprint && sprint.sprintname ? `${sprint.sprintname} - ${sprint.squad['squadname']}` : '';
   }
 
+  sprintChange(value) {
+    console.log('Sprint Changed, ' + value);
+    this.selectedSprint = value.squad.accessCode;
+    this.roomUsersSubject.next(this.roomUsers[this.selectedSprint]);
+  }
 
 }

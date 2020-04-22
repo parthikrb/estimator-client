@@ -22,7 +22,7 @@ export class JoinPageComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private readonly authenticationService: AuthenticationService,
-    ) { }
+  ) { }
 
   ngOnInit() {
     this.joinForm();
@@ -48,7 +48,8 @@ export class JoinPageComponent implements OnInit {
 
   join(value) {
     console.log(value);
-    this.router.navigate(['/vote']);
+    this.authenticationService.join(value);
+    // this.router.navigate(['/vote']);
   }
 
   login(value: UserLogin) {
