@@ -27,6 +27,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTreeModule } from '@angular/material/tree';
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 const materialModules = [
   CdkTreeModule,
@@ -56,7 +58,9 @@ const materialModules = [
   MatTreeModule,
   OverlayModule,
   PortalModule,
-  MatBottomSheetModule
+  MatBottomSheetModule,
+  MatGridListModule,
+  MatTooltipModule
 ];
 
 @NgModule({

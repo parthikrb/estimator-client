@@ -24,7 +24,7 @@ const userRoutes: Routes = [{
     ReactiveFormsModule,
     SharedModule,
     RouterModule.forChild(userRoutes),
-    NgScrollbarModule
+
   ],
   exports: [UsersPageComponent, AddUserPageComponent, EditUserPageComponent, SharedModule],
 
