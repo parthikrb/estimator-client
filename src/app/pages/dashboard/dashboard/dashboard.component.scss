@@ -1,20 +1,57 @@
 .post-story {
-    width: 60%;
+    width: 100%;
+    margin-left: 10px;
     .form-element {
         width: 35%;
         margin-right: 5px;
     }
     button {
         margin-left: 5px;
-        width: 18%;
+        width: 38%;
     }
-}
-
-.poll-fieldset {
-    border: double 2px lightseagreen;
 }
 
 .mat-card-text {
     font-size: 16px;
-    ;
+}
+
+.story-fieldset,
+.poll-fieldset,
+.user-fieldset {
+    width: 100%;
+    height: 96%;
+    padding: 1px;
+    margin: 10px;
+    border-radius: 2.5px;
+    border: outset lightseagreen;
+}
+
+.poll-fieldset {
+    margin-top: 20px;
+    height: 85%;
+}
+
+.user-fieldset {
+    margin-left: 0px;
+    height: 96%;
+    overflow: hidden;
+}
+
+.poll-button {
+    background-color: rgb(41, 168, 168);
+}
+
+.revote-button {
+    background-color: rgb(192, 194, 60);
+}
+
+.save-button {
+    background-color: rgb(27, 214, 121);
+}
+
+.fieldset-title {
+    border-radius: 2.5px;
+    background-color: lightseagreen;
+    padding-left: 5px;
+    padding-right: 5px;
 }

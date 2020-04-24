@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-fibonacci-tile',
@@ -13,6 +13,8 @@ export class FibonacciTileComponent implements OnInit {
 
   @Input() description: string;
 
+  @Output() votedValue = new EventEmitter<number>();
+
   constructor() { }
 
   ngOnInit() {
@@ -21,6 +23,8 @@ export class FibonacciTileComponent implements OnInit {
   cardSelected(value) {
     console.log('Card clicked, ', value);
     this.toggle = !this.toggle;
+    this.votedValue.emit(value);
   }
+
 
 }

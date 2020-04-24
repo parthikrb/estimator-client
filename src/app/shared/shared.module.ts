@@ -9,6 +9,7 @@ import { JoinPageComponent } from './components/join-page/join-page.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { RouterModule } from '@angular/router';
 import { CopyClipboardDirective } from './directives/copy-clipboard.directive';
+import { NgScrollbarModule } from 'ngx-scrollbar';
 
 
 
@@ -21,8 +22,9 @@ const components = [FibonacciTileComponent, HeaderComponent, SearchComponent, Jo
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    RouterModule
+    RouterModule,
+    NgScrollbarModule
   ],
-  exports: [ReactiveFormsModule, FormsModule, MaterialModule, components, CopyClipboardDirective]
+  exports: [ReactiveFormsModule, FormsModule, MaterialModule, components, CopyClipboardDirective, NgScrollbarModule]
 })
 export class SharedModule { }

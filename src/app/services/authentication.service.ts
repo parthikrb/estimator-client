@@ -32,6 +32,10 @@ export class AuthenticationService {
     this.joinUser$ = this.joinUserSubject.asObservable();
     this.loggedIn = new BehaviorSubject<boolean>(false);
     this.isLoggedIn$ = this.loggedIn.asObservable();
+
+    if (this.currentUserValue) {
+      this.loggedIn.next(true);
+    }
   }
 
   public get currentUserValue(): UserLogin {

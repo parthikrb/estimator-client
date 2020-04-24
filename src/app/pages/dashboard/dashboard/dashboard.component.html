@@ -1,32 +1,63 @@
 <div class="page-container">
-    <fieldset class="poll-fieldset">
-        <legend>Poll</legend>
-        <div class="post-story">
-            <form [formGroup]="postStoryForm">
-                <mat-form-field class="form-element">
-                    <mat-label>Sprint</mat-label>
-                    <input matInput placeholder="Ex. Sprint1" [matAutocomplete]="sprint" formControlName="sprint" autofocus>
 
-                    <mat-autocomplete #sprint="matAutocomplete" [displayWith]="displayFn">
-                        <mat-option *ngFor="let sprint of (filteredSprints | async)" [value]="sprint" (onSelectionChange)="sprintChange(sprint)">
-                            {{ sprint?.sprintname}} - {{sprint?.squad['squadname']}}
-                        </mat-option>
-                    </mat-autocomplete>
-                </mat-form-field>
-                <mat-form-field class="form-element">
-                    <mat-label>Story#</mat-label>
-                    <input matInput name="text" id="post" placeholder="Ex. HFT-1234" formControlName="storyname" autocomplete="off">
-                </mat-form-field>
-                <button mat-raised-button color="primary" (click)="post(postStoryForm.value)" [disabled]="!postStoryForm.valid"> <mat-icon class="mat-18">cast</mat-icon> POLL
-                </button>
-            </form>
+    <mat-grid-list cols="4" rowHeight="fit" [style.height]="'100%'" [gutterSize]="'1px'">
+        <mat-grid-tile [colspan]="3" [rowspan]="1">
+            <fieldset class="poll-fieldset">
+                <legend>
+                    <span class="fieldset-title">
+                    Poll
+                  </span></legend>
+                <div class="post-story">
+                    <form [formGroup]="postStoryForm">
+                        <mat-form-field class="form-element">
+                            <mat-label>Sprint</mat-label>
+                            <input matInput placeholder="Ex. Sprint1" [matAutocomplete]="sprint" formControlName="sprint" autofocus>
 
-        </div>
-    </fieldset>
-    <fieldset>
-        <legend>Users</legend>
-        <div class="flex-container">
-            <app-fibonacci-tile class="tile" *ngFor="let user of (roomUsers$ | async)" [value]="user.username" [description]="user.role"></app-fibonacci-tile>
-        </div>
-    </fieldset>
+                            <mat-autocomplete #sprint="matAutocomplete" [displayWith]="displayFn">
+                                <mat-option *ngFor="let sprint of (filteredSprints | async)" [value]="sprint" (onSelectionChange)="sprintChange(sprint)">
+                                    {{ sprint?.sprintname}} - {{sprint?.squad['squadname']}}
+                                </mat-option>
+                            </mat-autocomplete>
+                        </mat-form-field>
+                        <mat-form-field class="form-element">
+                            <mat-label>Story#</mat-label>
+                            <input matInput name="text" id="post" placeholder="Ex. HFT-1234" formControlName="storyname" autocomplete="off">
+                        </mat-form-field>
+                        <mat-button-toggle-group #group="matButtonToggleGroup" class="button">
+                            <mat-button-toggle matTooltip="Poll" class="poll-button" color="primary" aria-label="Poll" (click)="post(postStoryForm.value)" [disabled]="!postStoryForm.valid">
+                                <mat-icon>cast</mat-icon>
+                            </mat-button-toggle>
+                            <mat-button-toggle matTooltip="Flip" class="flip-button" aria-label="Flip" (click)="flipCard()" [disabled]="!postStoryForm.valid || !isPolled">
+                                <mat-icon>flip</mat-icon>
+                            </mat-button-toggle>
+                            <mat-button-toggle matTooltip="Re-vote" class="revote-button" aria-label="Revote" [disabled]="!postStoryForm.valid || !isPolled">
+                                <mat-icon>replay</mat-icon>
+                            </mat-button-toggle>
+                            <mat-button-toggle matTooltip="Save" class="save-button" aria-label="Text align right" [disabled]="!postStoryForm.valid || !isPolled">
+                                <mat-icon>publish</mat-icon>
+                            </mat-button-toggle>
+                        </mat-button-toggle-group>
+                    </form>
+
+                </div>
+            </fieldset>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="6">
+            <fieldset class="user-fieldset">
+                <legend>
+                    <span class="fieldset-title">Team</span>
+                </legend>
+                <ng-scrollbar #scrollable track="all" pointerEventsMethod="scrollbar">
+                    <app-user-tile *ngFor="let user of (roomUsers$ | async)" [username]="user.username" [role]="user.role" [estimation]="user.vote || 0"></app-user-tile>
+                </ng-scrollbar>
+            </fieldset>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="3" [rowspan]="5">
+            <fieldset class="story-fieldset">
+                <legend>
+                    <span class="fieldset-title">Sprint Stories</span>
+                </legend>
+            </fieldset>
+        </mat-grid-tile>
+    </mat-grid-list>
 </div>
