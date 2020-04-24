@@ -8,7 +8,9 @@ const entityMetadata: EntityMetadataMap = {
   Squad: {
     selectId: Squad => Squad._id
   },
-  Story: {},
+  Story: {
+    selectId: Story => Story._id
+  },
   Sprint: {
     selectId: Sprint => Sprint._id
   }

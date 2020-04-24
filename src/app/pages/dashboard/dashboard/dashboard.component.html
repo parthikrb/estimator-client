@@ -12,7 +12,6 @@
                         <mat-form-field class="form-element">
                             <mat-label>Sprint</mat-label>
                             <input matInput placeholder="Ex. Sprint1" [matAutocomplete]="sprint" formControlName="sprint" autofocus>
-
                             <mat-autocomplete #sprint="matAutocomplete" [displayWith]="displayFn">
                                 <mat-option *ngFor="let sprint of (filteredSprints | async)" [value]="sprint" (onSelectionChange)="sprintChange(sprint)">
                                     {{ sprint?.sprintname}} - {{sprint?.squad['squadname']}}
@@ -33,7 +32,7 @@
                             <mat-button-toggle matTooltip="Re-vote" class="revote-button" aria-label="Revote" [disabled]="!postStoryForm.valid || !isPolled">
                                 <mat-icon>replay</mat-icon>
                             </mat-button-toggle>
-                            <mat-button-toggle matTooltip="Save" class="save-button" aria-label="Text align right" [disabled]="!postStoryForm.valid || !isPolled">
+                            <mat-button-toggle matTooltip="Save" class="save-button" aria-label="Save" (click)="save()" [disabled]="!postStoryForm.valid || !isPolled">
                                 <mat-icon>publish</mat-icon>
                             </mat-button-toggle>
                         </mat-button-toggle-group>
@@ -47,6 +46,29 @@
                 <legend>
                     <span class="fieldset-title">Team</span>
                 </legend>
+                <mat-grid-list cols="3" rowHeight="fit" [style.height]="'40px'" [gutterSize]="'1px'" class="flipResult">
+                    <mat-grid-tile [colspan]="1" [rowspan]="1">
+                        <div class="result devResult">
+                            <span class="value">{{ average['Developer'] || 0 }}</span>
+                            <span class="role">DEV</span>
+                        </div>
+                    </mat-grid-tile>
+                    <mat-grid-tile [colspan]="1" [rowspan]="1">
+                        <div class="result qaResult">
+                            <span class="value">{{ average['Quality Analyst'] || 0 }}</span>
+                            <span class="role">QA</span>
+                        </div>
+                    </mat-grid-tile>
+                    <mat-grid-tile [colspan]="1" [rowspan]="1">
+                        <div class="result baResult">
+                            <span class="value">{{ average['Business Analyst'] || 0 }}</span>
+                            <span class="role">BA</span>
+                        </div>
+                    </mat-grid-tile>
+                </mat-grid-list>
+
+                <mat-divider mat-inset></mat-divider>
+
                 <ng-scrollbar #scrollable track="all" pointerEventsMethod="scrollbar">
                     <app-user-tile *ngFor="let user of (roomUsers$ | async)" [username]="user.username" [role]="user.role" [estimation]="user.vote || 0"></app-user-tile>
                 </ng-scrollbar>
