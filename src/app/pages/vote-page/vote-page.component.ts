@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PollService } from '../../services/poll.service';
 import { Subject, BehaviorSubject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
   selector: 'app-vote-page',
@@ -21,15 +22,15 @@ export class VotePageComponent implements OnInit {
     'Intermediate', 'Hard', 'Expert', 'Difficult'];
 
   constructor(
-    private pollService: PollService
-  ) { }
+    private pollService: PollService,
+  ) {
+  }
 
   ngOnInit() {
     this.fibonacciValue = this.fibonacciSeries(9);
     console.log('[Fib Value], ', this.fibonacciValue);
 
     this.pollService.getMessage()
-      // .pipe(takeUntil(this.unsubscribeOnDestroy))
       .subscribe(
         data => {
           console.log('data, ', data);
@@ -44,6 +45,11 @@ export class VotePageComponent implements OnInit {
       arr.push(arr[i - 2] + arr[i - 1]);
     }
     return arr;
+  }
+
+  userVote(value: number) {
+    console.log('User Voted Value, ' + value);
+    this.pollService.sendVote(value);
   }
 
 }

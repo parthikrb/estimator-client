@@ -25,16 +25,16 @@
                         </mat-form-field>
                         <mat-button-toggle-group #group="matButtonToggleGroup" class="button">
                             <mat-button-toggle matTooltip="Poll" class="poll-button" color="primary" aria-label="Poll" (click)="post(postStoryForm.value)" [disabled]="!postStoryForm.valid">
-                                <mat-icon>cast</mat-icon> Poll
+                                <mat-icon>cast</mat-icon>
                             </mat-button-toggle>
-                            <mat-button-toggle matTooltip="Flip" class="flip-button" aria-label="Flip" [disabled]="!postStoryForm.valid || !isPolled">
-                                <mat-icon>flip</mat-icon> Flip
+                            <mat-button-toggle matTooltip="Flip" class="flip-button" aria-label="Flip" (click)="flipCard()" [disabled]="!postStoryForm.valid || !isPolled">
+                                <mat-icon>flip</mat-icon>
                             </mat-button-toggle>
                             <mat-button-toggle matTooltip="Re-vote" class="revote-button" aria-label="Revote" [disabled]="!postStoryForm.valid || !isPolled">
-                                <mat-icon>replay</mat-icon> Re-vote
+                                <mat-icon>replay</mat-icon>
                             </mat-button-toggle>
                             <mat-button-toggle matTooltip="Save" class="save-button" aria-label="Text align right" [disabled]="!postStoryForm.valid || !isPolled">
-                                <mat-icon>publish</mat-icon> Save
+                                <mat-icon>publish</mat-icon>
                             </mat-button-toggle>
                         </mat-button-toggle-group>
                     </form>
@@ -48,7 +48,7 @@
                     <span class="fieldset-title">Team</span>
                 </legend>
                 <ng-scrollbar #scrollable track="all" pointerEventsMethod="scrollbar">
-                    <app-user-tile *ngFor="let user of (roomUsers$ | async)" [username]="user.username" [role]="user.role" estimation="8"></app-user-tile>
+                    <app-user-tile *ngFor="let user of (roomUsers$ | async)" [username]="user.username" [role]="user.role" [estimation]="user.vote || 0"></app-user-tile>
                 </ng-scrollbar>
             </fieldset>
         </mat-grid-tile>

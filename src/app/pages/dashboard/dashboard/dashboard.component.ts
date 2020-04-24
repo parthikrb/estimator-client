@@ -23,6 +23,7 @@ export class DashboardComponent implements OnInit {
 
   isPolled: boolean;
   roomUsers: any[] = [];
+  roomUsersVote: any[] = [];
   private roomUsersSubject = new BehaviorSubject<any>([]);
   roomUsers$ = this.roomUsersSubject.asObservable();
 
@@ -52,6 +53,14 @@ export class DashboardComponent implements OnInit {
         this.roomUsers = user;
         if (this.selectedSprint) this.roomUsersSubject.next(this.roomUsers[this.selectedSprint]);
       });
+
+    /**
+     * To get the user votes
+     */
+    this.pollService.receiveVote()
+      .subscribe(user => {
+        this.roomUsersVote = user;
+      })
   }
 
   createPostStoryForm() {
@@ -67,8 +76,13 @@ export class DashboardComponent implements OnInit {
 
   post(value) {
     this.isPolled = true;
-    console.log('value is, ', value);
+    this.roomUsersSubject.next(this.roomUsers[this.selectedSprint]); // to reset the vote to 0
     this.pollService.sendMessage(value.storyname, 'host', value.sprint.squad.accessCode);
+  }
+
+  flipCard() {
+    console.log('Inside Flip');
+    if (this.selectedSprint) this.roomUsersSubject.next(this.roomUsersVote[this.selectedSprint]);
   }
 
   private getFilteredValue(control: FormControl) {

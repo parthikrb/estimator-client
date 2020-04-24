@@ -13,12 +13,20 @@ export class PollService {
     private socket: Socket
   ) { }
 
-  sendMessage(text: string, name: string, roomId: string): void {
+  public sendMessage(text: string, name: string, roomId: string): void {
     this.socket.emit('message', { message: text, username: name, room: roomId });
+  }
+
+  public sendVote(text: number): void {
+    this.socket.emit('vote', { vote: text });
   }
 
   public getMessage(): Observable<any> {
     return this.socket.fromEvent<any>('message');
+  }
+
+  public receiveVote(): Observable<any> {
+    return this.socket.fromEvent<any>('collectVotes');
   }
 
   public joinRoom(roomId: string, name: string, role: string): void {

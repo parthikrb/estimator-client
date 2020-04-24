@@ -1,4 +1,4 @@
-<mat-card class="user-card">
+<!-- <mat-card class="user-card">
     <table class="table">
         <tr>
             <td class="user-info">
@@ -11,4 +11,10 @@
         </tr>
     </table>
 
-</mat-card>
+</mat-card> -->
+
+<mat-grid-list class="user-card" cols="6" rowHeight="13px" [gutterSize]="'1px'">
+    <mat-grid-tile [colspan]="5" [rowspan]="2"><span class="username">{{username}}</span></mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="3"><span class="estimation">{{estimation}}</span></mat-grid-tile>
+    <mat-grid-tile [colspan]="5" [rowspan]="1"><span class="role">{{role}}</span></mat-grid-tile>
+</mat-grid-list>
