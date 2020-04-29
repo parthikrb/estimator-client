@@ -107,3 +107,8 @@ ng-scrollbar {
     --scrollbar-thumb-hover-color: lightgreen;
     --scrollbar-border-radius: 4px;
 }
+
+tr.mat-footer-row {
+    border: 1px solid #e7e7e7;
+    height: 10px !important;
+}

@@ -10,7 +10,7 @@ export class AuthInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const currentUser = this.authenticationService.currentUserValue;
     if (currentUser && currentUser.value) {
-      console.log('Interceptor, ', currentUser);
+      // console.log('Interceptor, ', currentUser);
       request = request.clone({
         setHeaders: {
           authorization: `Bearer ${currentUser.value}`

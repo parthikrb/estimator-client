@@ -2,7 +2,7 @@
     <h4>You are voting for Story#, <span class="story-number">{{ storyNumber$ | async}}</span></h4>
 
     <div class="flex-container">
-        <app-fibonacci-tile class="tile" *ngFor="let fib of fibonacciValue; let i = index" [value]="fib" [description]="difficultyLevel[i]" (votedValue)="userVote($event)"></app-fibonacci-tile>
+        <app-fibonacci-tile class="tile" *ngFor="let fib of fibonacciValue; let i = index" [value]="fib" [storyNumber]="storyNumber$ | async" [description]="difficultyLevel[i]" (votedValue)="userVote($event)"></app-fibonacci-tile>
     </div>
 </div>
 

@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { SprintService } from '../../../services/sprint.service';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { Sprint } from 'src/app/entities/sprint';
-import { startWith, map } from 'rxjs/operators';
+import { startWith, map, filter } from 'rxjs/operators';
 import { PollService } from '../../../services/poll.service';
 import { StoryService } from '../../../services/story.service';
 import { Story } from 'src/app/entities/story';
@@ -21,7 +21,11 @@ export class DashboardComponent implements OnInit {
   filteredSprints: Observable<Sprint[]>;
 
   stories$: Observable<Story[]>;
+
+  sprintStoriesSubject: BehaviorSubject<any>;
+  sprintStories$: Observable<any>;
   storyLoading$: Observable<boolean>;
+  sprintStoriesCache: Story[] = [];
 
   selectedSprint: string;
   allSprints: any[] = [];
@@ -46,6 +50,9 @@ export class DashboardComponent implements OnInit {
 
     this.stories$ = this.storyService.entities$;
     this.storyLoading$ = this.storyService.loading$;
+
+    this.sprintStoriesSubject = new BehaviorSubject<any>([]);
+    this.sprintStories$ = this.sprintStoriesSubject.asObservable();
   }
 
   ngOnInit() {
@@ -53,6 +60,8 @@ export class DashboardComponent implements OnInit {
     this.sprintService.getAll().subscribe(sprint => {
       if (sprint.length > 0) this.allSprints.push(sprint)
     });
+
+    this.storyService.getAll();
     this.createPostStoryForm();
 
     this.filteredSprints = this.getFilteredValue(this.sprint) as Observable<Sprint[]>;
@@ -109,25 +118,26 @@ export class DashboardComponent implements OnInit {
         acc),
       new Map())).reduce(
         (acc, [name, values]) =>
-          Object.assign(acc, { [name]: values.reduce((a, b) => a + b) / values.length }),
+          Object.assign(acc, { [name]: Math.ceil(values.reduce((a, b) => a + b) / values.length) }),
         {}
       );
   }
 
   public save() {
-    this.storyService.add({
+    const storyObject = {
       storyname: this.storyname.value as string,
-      sprint: `${this.selectedSprint}-${this.sprintName}` as string,
+      sprint: this.sprintName as string,
       dev: this.average.Developer as number,
       qa: this.average['Quality Analyst'] as number,
       ba: this.average['Business Analyst'] as number,
       storyPoints: this.roomUsersVote[this.selectedSprint]
-    });
+    };
+    this.storyService.add(storyObject);
+    this.average = [];
 
   }
 
   private getFilteredValue(control: FormControl) {
-    console.log('check ,', this.allSprints);
     return control.valueChanges
       .pipe(
         startWith(''),
@@ -149,11 +159,21 @@ export class DashboardComponent implements OnInit {
   }
 
   sprintChange(value) {
-    console.log('Sprint Changed, ' + JSON.stringify(value));
+    this.storyname.reset();
     this.selectedSprint = value.squad.accessCode;
-    this.sprintName = value.sprintname;
+    this.sprintName = value._id;
+    console.log('Sprint Name, ' + this.sprintName);
     this.roomUsersSubject.next(this.roomUsers[this.selectedSprint]);
-    this.storyService.getByKey(`${this.selectedSprint}-${this.sprintName}`);
+    this.sprintStories$ = this.getStoriesBySprint(this.sprintName);
+    this.average = [];
+
+  }
+
+  getStoriesBySprint(sprintName) {
+    return this.stories$.pipe(
+      map(stories => stories.filter(story => story.sprint === sprintName)),
+      filter(stories => stories && stories.length > 0)
+    )
   }
 
 }
