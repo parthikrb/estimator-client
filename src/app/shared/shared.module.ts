@@ -11,7 +11,7 @@ import { RouterModule } from '@angular/router';
 import { CopyClipboardDirective } from './directives/copy-clipboard.directive';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { SprintStoryDetailsComponent } from './components/sprint-story-details/sprint-story-details.component';
-
+import { ChartsModule } from 'ng2-charts';
 
 
 const components = [SprintStoryDetailsComponent, FibonacciTileComponent, HeaderComponent, SearchComponent,
@@ -25,8 +25,9 @@ const components = [SprintStoryDetailsComponent, FibonacciTileComponent, HeaderC
     ReactiveFormsModule,
     MaterialModule,
     RouterModule,
-    NgScrollbarModule
+    NgScrollbarModule,
+    ChartsModule
   ],
-  exports: [ReactiveFormsModule, FormsModule, MaterialModule, components, CopyClipboardDirective, NgScrollbarModule]
+  exports: [ReactiveFormsModule, FormsModule, MaterialModule, components, ChartsModule, CopyClipboardDirective, NgScrollbarModule]
 })
 export class SharedModule { }

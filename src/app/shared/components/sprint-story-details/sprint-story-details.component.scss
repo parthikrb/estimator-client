@@ -1,3 +1,64 @@
-.mat-table {
-    width: 100% !important;
+.chart {
+    display: block;
+    // width: 100%;
+    height: 390px !important;
+}
+
+.sprint-details {
+    margin-top: -9px;
+    z-index: -2;
+    width: 100%;
+    display: flex;
+}
+
+.actual,
+.remaining {
+    width: 35%;
+    margin-top: -10px !important;
+    margin-bottom: -10px !important;
+    border-right: solid 3px seagreen;
+    margin-right: 3px;
+}
+
+.remaining {
+    margin-left: 10px;
+}
+
+.export {
+    width: 30%;
+    margin-top: -10px !important;
+    margin-bottom: -10px !important;
+    text-align: center;
+}
+
+.actual-capacity,
+.remaining-capacity {
+    font-weight: lighter;
+    font-size: x-small;
+}
+
+.dev,
+.qa,
+.ba {
+    font-weight: bolder;
+    font-size: large;
+    margin-left: 30px;
+}
+
+.dev {
+    color: #FD9FB3;
+}
+
+.qa {
+    color: #84C5F1;
+    ;
+}
+
+.ba {
+    color: #FDE098;
+}
+
+.export-button {
+    margin-top: -10px !important;
+    margin-bottom: -10px !important;
 }
