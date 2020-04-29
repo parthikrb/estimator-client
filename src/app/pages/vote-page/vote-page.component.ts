@@ -28,7 +28,6 @@ export class VotePageComponent implements OnInit {
 
   ngOnInit() {
     this.fibonacciValue = this.fibonacciSeries(9);
-    console.log('[Fib Value], ', this.fibonacciValue);
 
     this.pollService.getMessage()
       .subscribe(
@@ -48,7 +47,6 @@ export class VotePageComponent implements OnInit {
   }
 
   userVote(value: number) {
-    console.log('User Voted Value, ' + value);
     this.pollService.sendVote(value);
   }
 

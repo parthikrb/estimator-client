@@ -10,10 +10,12 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { RouterModule } from '@angular/router';
 import { CopyClipboardDirective } from './directives/copy-clipboard.directive';
 import { NgScrollbarModule } from 'ngx-scrollbar';
+import { SprintStoryDetailsComponent } from './components/sprint-story-details/sprint-story-details.component';
 
 
 
-const components = [FibonacciTileComponent, HeaderComponent, SearchComponent, JoinPageComponent, SidenavComponent];
+const components = [SprintStoryDetailsComponent, FibonacciTileComponent, HeaderComponent, SearchComponent,
+  JoinPageComponent, SidenavComponent];
 
 @NgModule({
   declarations: [components, CopyClipboardDirective],

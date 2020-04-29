@@ -1,19 +1,19 @@
 <mat-sidenav-container [ngClass]="(isLoggedIn$ | async) ? 'sidenav-l' : 'sidenav'" autosize>
     <mat-sidenav #drawer mode="side" disableClose="true" opened *ngIf="isLoggedIn$ | async">
         <mat-nav-list>
-            <mat-list-item [routerLink]="['admin']" [routerLinkActive]="['active-list-item']">
+            <mat-list-item [routerLink]="['admin']" [routerLinkActive]="['active-list-item']" matTooltip="Poll">
                 <mat-icon mat-list-icon>wifi</mat-icon>
                 <h4 mat-line *ngIf="isExpanded">Poll</h4>
             </mat-list-item>
-            <mat-list-item [routerLink]="['sprint']" [routerLinkActive]="['active-list-item']">
+            <mat-list-item [routerLink]="['sprint']" [routerLinkActive]="['active-list-item']" matTooltip="Sprint">
                 <mat-icon mat-list-icon>library_books</mat-icon>
                 <h4 mat-line *ngIf="isExpanded">Sprint</h4>
             </mat-list-item>
-            <mat-list-item [routerLink]="['user']" [routerLinkActive]="['active-list-item']">
+            <mat-list-item [routerLink]="['user']" [routerLinkActive]="['active-list-item']" matTooltip="User">
                 <mat-icon mat-list-icon>person</mat-icon>
                 <h4 mat-line *ngIf="isExpanded">User</h4>
             </mat-list-item>
-            <mat-list-item [routerLink]="['squad']" [routerLinkActive]="['active-list-item']">
+            <mat-list-item [routerLink]="['squad']" [routerLinkActive]="['active-list-item']" matTooltip="Squad">
                 <mat-icon mat-list-icon>group</mat-icon>
                 <h4 mat-line *ngIf="isExpanded">Squad</h4>
             </mat-list-item>
