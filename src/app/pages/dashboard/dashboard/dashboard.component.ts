@@ -5,6 +5,8 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { Sprint } from 'src/app/entities/sprint';
 import { startWith, map } from 'rxjs/operators';
 import { PollService } from '../../../services/poll.service';
+import { StoryService } from '../../../services/story.service';
+import { Story } from 'src/app/entities/story';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,22 +20,32 @@ export class DashboardComponent implements OnInit {
   loading$: Observable<boolean>;
   filteredSprints: Observable<Sprint[]>;
 
+  stories$: Observable<Story[]>;
+  storyLoading$: Observable<boolean>;
+
   selectedSprint: string;
   allSprints: any[] = [];
 
+  sprintName: string;
   isPolled: boolean;
   roomUsers: any[] = [];
   roomUsersVote: any[] = [];
+  average: any = {};
+
   private roomUsersSubject = new BehaviorSubject<any>([]);
   roomUsers$ = this.roomUsersSubject.asObservable();
 
   constructor(
     private formBuilder: FormBuilder,
     private sprintService: SprintService,
+    private storyService: StoryService,
     private pollService: PollService
   ) {
     this.sprints$ = this.sprintService.entities$;
     this.loading$ = this.sprintService.loading$;
+
+    this.stories$ = this.storyService.entities$;
+    this.storyLoading$ = this.storyService.loading$;
   }
 
   ngOnInit() {
@@ -74,6 +86,10 @@ export class DashboardComponent implements OnInit {
     return this.postStoryForm.get('sprint') as FormControl;
   }
 
+  get storyname() {
+    return this.postStoryForm.get('storyname') as FormControl;
+  }
+
   post(value) {
     this.isPolled = true;
     this.roomUsersSubject.next(this.roomUsers[this.selectedSprint]); // to reset the vote to 0
@@ -83,6 +99,31 @@ export class DashboardComponent implements OnInit {
   flipCard() {
     console.log('Inside Flip');
     if (this.selectedSprint) this.roomUsersSubject.next(this.roomUsersVote[this.selectedSprint]);
+
+    this.average = Array.from(this.roomUsersVote[this.selectedSprint].reduce(
+      (acc, obj) => Object.keys(obj).reduce(
+        // tslint:disable-next-line: no-shadowed-variable
+        (acc, key) => typeof obj[key] === 'number'
+          ? acc.set(key, (acc.get(key) || []).concat(obj[key]))
+          : acc,
+        acc),
+      new Map())).reduce(
+        (acc, [name, values]) =>
+          Object.assign(acc, { [name]: values.reduce((a, b) => a + b) / values.length }),
+        {}
+      );
+  }
+
+  public save() {
+    this.storyService.add({
+      storyname: this.storyname.value as string,
+      sprint: `${this.selectedSprint}-${this.sprintName}` as string,
+      dev: this.average.Developer as number,
+      qa: this.average['Quality Analyst'] as number,
+      ba: this.average['Business Analyst'] as number,
+      storyPoints: this.roomUsersVote[this.selectedSprint]
+    });
+
   }
 
   private getFilteredValue(control: FormControl) {
@@ -108,9 +149,11 @@ export class DashboardComponent implements OnInit {
   }
 
   sprintChange(value) {
-    console.log('Sprint Changed, ' + value);
+    console.log('Sprint Changed, ' + JSON.stringify(value));
     this.selectedSprint = value.squad.accessCode;
+    this.sprintName = value.sprintname;
     this.roomUsersSubject.next(this.roomUsers[this.selectedSprint]);
+    this.storyService.getByKey(`${this.selectedSprint}-${this.sprintName}`);
   }
 
 }

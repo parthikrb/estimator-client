@@ -55,3 +55,55 @@
     padding-left: 5px;
     padding-right: 5px;
 }
+
+.result {
+    width: 100%;
+    margin: 3px;
+    border-radius: 25%;
+    padding: 10px;
+    display: grid;
+}
+
+.devResult {
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #3d72b4, #525252);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #3d72b4, #525252);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.qaResult {
+    background: #00bf8f;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient( to right, #001510, #00bf8f);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient( to right, #001510, #00bf8f);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.baResult {
+    background: #360033;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient( to right, #0b8793, #360033);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient( to right, #0b8793, #360033);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.role {
+    font-weight: lighter;
+    font-size: 10px;
+    text-align: center;
+    color: gainsboro;
+}
+
+.value {
+    text-align: center;
+    font-weight: bolder;
+    color: wheat;
+}
+
+.flipResult {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
