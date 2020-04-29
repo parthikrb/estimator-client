@@ -22,8 +22,7 @@ export class DashboardComponent implements OnInit {
 
   stories$: Observable<Story[]>;
 
-  sprintStoriesSubject: BehaviorSubject<any>;
-  sprintStories$: Observable<any>;
+  sprintStories$: Observable<Story[]>;
   storyLoading$: Observable<boolean>;
   sprintStoriesCache: Story[] = [];
 
@@ -32,6 +31,7 @@ export class DashboardComponent implements OnInit {
 
   sprintName: string;
   isPolled: boolean;
+  sprintDetails: Sprint;
   roomUsers: any[] = [];
   roomUsersVote: any[] = [];
   average: any = {};
@@ -51,8 +51,7 @@ export class DashboardComponent implements OnInit {
     this.stories$ = this.storyService.entities$;
     this.storyLoading$ = this.storyService.loading$;
 
-    this.sprintStoriesSubject = new BehaviorSubject<any>([]);
-    this.sprintStories$ = this.sprintStoriesSubject.asObservable();
+    this.isPolled = false;
   }
 
   ngOnInit() {
@@ -105,6 +104,11 @@ export class DashboardComponent implements OnInit {
     this.pollService.sendMessage(value.storyname, 'host', value.sprint.squad.accessCode);
   }
 
+  revote(value) {
+    this.roomUsersSubject.next(this.roomUsers[this.selectedSprint]); // to reset the vote to 0
+    this.pollService.sendMessage(value.storyname, 'host', value.sprint.squad.accessCode);
+  }
+
   flipCard() {
     console.log('Inside Flip');
     if (this.selectedSprint) this.roomUsersSubject.next(this.roomUsersVote[this.selectedSprint]);
@@ -134,7 +138,9 @@ export class DashboardComponent implements OnInit {
     };
     this.storyService.add(storyObject);
     this.average = [];
-
+    this.storyService.getAll();
+    this.sprintStories$ = this.getStoriesBySprint(this.sprintName);
+    this.roomUsersSubject.next(this.roomUsers[this.selectedSprint]); // to reset the vote to 0
   }
 
   private getFilteredValue(control: FormControl) {
@@ -160,6 +166,7 @@ export class DashboardComponent implements OnInit {
 
   sprintChange(value) {
     this.storyname.reset();
+    this.sprintDetails = value;
     this.selectedSprint = value.squad.accessCode;
     this.sprintName = value._id;
     console.log('Sprint Name, ' + this.sprintName);

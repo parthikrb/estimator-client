@@ -32,7 +32,7 @@
                             <mat-button-toggle matTooltip="Flip" class="flip-button" aria-label="Flip" (click)="flipCard()" [disabled]="!postStoryForm.valid || !isPolled">
                                 <mat-icon>flip</mat-icon>
                             </mat-button-toggle>
-                            <mat-button-toggle matTooltip="Re-vote" class="revote-button" aria-label="Revote" [disabled]="!postStoryForm.valid || !isPolled">
+                            <mat-button-toggle matTooltip="Re-vote" class="revote-button" aria-label="Revote" (click)="revote(postStoryForm.value)" [disabled]="!postStoryForm.valid || !isPolled">
                                 <mat-icon>replay</mat-icon>
                             </mat-button-toggle>
                             <mat-button-toggle matTooltip="Save" class="save-button" aria-label="Save" (click)="save()" [disabled]="!postStoryForm.valid || !isPolled">
@@ -82,7 +82,7 @@
                 <legend>
                     <span class="fieldset-title">Sprint Stories</span>
                 </legend>
-                <app-sprint-story-details [dataSource]="(sprintStories$ | async)" class="story-table"></app-sprint-story-details>
+                <app-sprint-story-details [dataSource]="(sprintStories$ | async)" [sprint]="sprintDetails" class="story-table"></app-sprint-story-details>
             </fieldset>
         </mat-grid-tile>
     </mat-grid-list>
